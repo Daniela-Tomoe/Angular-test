@@ -1,0 +1,16 @@
+<div class="list-container">
+  <div class="title-container">
+    <h1 class="title">
+      Polos Itaú
+    </h1>
+    <p>
+      Confira abaixo alguns dos principais polos do itaú
+    </p>
+  </div>
+  <div class="search-container">
+    <form>
+      <input type="text" placeholder="Pesquisar..." (change)="search()" [(ngModel)]="searchModel" name="search">
+    </form>
+  </div>
+</div>
+<app-table></app-table>

@@ -1,0 +1,44 @@
+.list-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 6rem;
+  padding-bottom: 0;
+  width: calc(100% - 12rem);
+
+  >.title-container {
+    >.title {
+      line-height: 1;
+    }
+
+    >p {
+
+    }
+  }
+
+  .search-container {
+    >form {
+      >input {
+        border: 1px solid #7b7b7b;
+        border-radius: 5px;
+        padding: 1rem;
+        background-color: transparent;
+      }
+    }
+  }
+}
+// <div class="list-container">
+//   <div class="title-container">
+//     <h1 class="title">
+//       Polos Itaú
+//     </h1>
+//     <p>
+//       Confira abaixo alguns dos principais polos do itaú
+//     </p>
+//   </div>
+//   <div class="search-container">
+//     <form>
+//       <input type="text" placeholder="Pesquisar..." (input)="search($event)">
+//     </form>
+//   </div>
+// </div>

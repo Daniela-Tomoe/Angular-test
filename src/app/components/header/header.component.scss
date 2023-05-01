@@ -1,0 +1,61 @@
+.header {
+  background-color: #FFE0CC;
+  width: calc(100vw - 12rem);
+  padding: 3rem 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #3E3C3C;
+  border-bottom: 3px solid #FF7B24;
+
+  >.logo {
+    >img {
+      height: 65px;
+    }
+  }
+
+  >.language-user {
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+
+    >.language {
+      padding-right: 3rem;
+      border-right: 1px solid #3E3C3C;
+      height: 100%;
+
+      >p {
+        font-weight: bold;
+        font-size: 1.7rem;
+      }
+    }
+
+    >.user {
+      padding-left: 3rem;
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      >img {
+        border-radius: 50%;
+        height: 50px;
+      }
+
+      >.user-data {
+        margin: 0 1rem;
+
+        >.name {
+          font-weight: bold;
+        }
+
+        >.job {
+
+        }
+      }
+
+      >mat-icon {
+
+      }
+    }
+  }
+}
