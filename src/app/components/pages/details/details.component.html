@@ -1,0 +1,29 @@
+<div class="list-container">
+  <div class="title-container">
+    <h1 class="title">
+      Polo {{businessDetails.name}}
+    </h1>
+    <p>
+      Exibido detalhes do polo {{businessDetails.name}}#{{businessDetails.id}}
+    </p>
+  </div>
+  <div class="adress-details">
+
+  </div>
+  <div class="business-details">
+    <form [formGroup]="detailsForm">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="business">Business</label>
+        <input type="text" formControlName="business">
+      </div>
+      <div class="form-group">
+        <label for="Valuation">Valuation</label>
+        <input type="text" formControlName="valuation">
+      </div>
+    </form>
+  </div>
+</div>

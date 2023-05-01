@@ -1,0 +1,50 @@
+.table {
+  margin: 3rem 6rem;
+  box-shadow: 0px 2px 6px 0px #00000030;
+  max-width: calc(100% - 12rem);
+  width: 100%;
+
+  >table {
+    width: 100%;
+  }
+
+  >mat-paginator {
+    border-top: 1px solid #e0e0e0;
+  }
+}
+
+.mat-column-name {
+  font-weight: bold;
+}
+
+.mat-column-name, .mat-column-business {
+  width: 30%
+}
+
+.mat-column-valuation {
+  width: 20%;
+}
+
+.mat-column-active, .mat-columns-details {
+  width: 10%;
+}
+
+.mat-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.mdc-data-table__cell {
+  height: 20px;
+
+
+  &.icon-cell {
+    text-align: center;
+  }
+
+  &.details-link {
+    .mat-icon {
+      font-size: 20px;
+    }
+  }
+}
