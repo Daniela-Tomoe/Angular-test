@@ -4,14 +4,38 @@
       Polo {{businessDetails.name}}
     </h1>
     <p>
-      Exibido detalhes do polo {{businessDetails.name}}#{{businessDetails.id}}
+      Exibindo detalhes do polo {{businessDetails.name}}#{{businessDetails.id}}
     </p>
   </div>
-  <div class="adress-details">
+  <div class="address-details form">
+    <h3>Detalhes do Endereço</h3>
+    <form [formGroup]="addressForm">
+      <div class="form-group">
+        <label for="cep">CEP</label>
+        <input type="text" formControlName="cep" (blur)="consultCep()" mask="00000-000">
+      </div>
+      <div class="form-group">
+        <label for="street">Nome da Rua</label>
+        <input type="text" formControlName="street" class="street">
+      </div>
+      <div class="form-group">
+        <label for="neighborhood">Bairro</label>
+        <input type="text" formControlName="neighborhood">
+      </div>
+      <div class="form-group">
+        <label for="state">Estado</label>
+        <input type="text" formControlName="state">
+      </div>
+      <div class="form-group">
+        <label for="city">Cidade</label>
+        <input type="text" formControlName="city">
+      </div>
+    </form>
 
   </div>
-  <div class="business-details">
-    <form [formGroup]="detailsForm">
+  <div class="business-details form">
+    <h3>Detalhes da Empresa</h3>
+    <form [formGroup]="businessForm">
       <div class="form-group">
         <label for="name">Nome</label>
         <input type="text" formControlName="name">
@@ -22,8 +46,24 @@
       </div>
       <div class="form-group">
         <label for="Valuation">Valuation</label>
-        <input type="text" formControlName="valuation">
+        <input type="text" formControlName="valuation" mask="separator.2" thousandSeparator="." prefix="R$ ">
+      </div>
+      <div class="form-group">
+        <label for="cnpj">CNPJ</label>
+        <input type="text" formControlName="cnpj" mask="00.000.000/0000-00">
+      </div>
+      <div class="form-group">
+        <label for="active">Ativo?</label>
+        <select formControlName="active">
+          <option value="true">Sim</option>
+          <option value="false">Não</option>
+        </select>
+        <mat-icon>arrow_drop_down</mat-icon>
       </div>
     </form>
+  </div>
+  <div class="buttons">
+    <button class="back" (click)="goBack()">Voltar</button>
+    <button class="save" (click)="saveChanges()">Salvar</button>
   </div>
 </div>

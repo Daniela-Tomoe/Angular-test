@@ -1,0 +1,110 @@
+.list-container {
+  color: #727272;
+
+  >.title-container {
+    >.title {
+      line-height: 1;
+      font-weight: bold;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: black;
+    }
+
+    >p {
+      font-size: 2rem;
+    }
+  }
+
+  >.form {
+    &.address-details {
+      margin: 6rem 0;
+    }
+
+    >h3 {
+      font-weight: bold;
+    }
+    >form {
+      display: flex;
+
+      >.form-group {
+        margin-right: 1.5rem;
+        font-size: 1.8rem;
+        position: relative;
+
+        >label {
+          color: #989898;
+          font-size: 1.1rem;
+          position: absolute;
+          background-color: #fbfbfb;
+          left: 1rem;
+          top: -10px;
+          padding: 0.3rem;
+        }
+
+        >input {
+          border-radius: 5px;
+          border: 1px solid #d7d7d7;
+          font-size: 1.6rem;
+          color: #727272;
+          padding: 1rem;
+          padding-top: 2rem;
+          background-color: transparent;
+
+          &.street {
+            width: 430px;
+          }
+        }
+
+        >select {
+          padding: 1rem;
+          padding-top: 2rem;
+          border: 1px solid #d7d7d7;
+          color: #989898;
+          appearance: none;
+          height: 51px;
+          width: 217px;
+        }
+
+        >mat-icon {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 6px;
+        }
+      }
+    }
+  }
+
+  >.buttons {
+    margin-top: 6rem;
+
+    >button {
+      padding: 1.2rem 2rem;
+      margin-right: 1.5rem;
+      border-radius: 5px;
+      border: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      transition: .5s;
+      cursor: pointer;
+
+      &.back {
+        background-color: #989898;
+
+        &:hover {
+          background-color: #6c6c6c;
+        }
+      }
+
+      &.save {
+        background-color: #FA8341;
+        padding: 1.2rem 4.5rem;
+
+        &:hover {
+          background-color: #fe5b00;
+        }
+      }
+    }
+  }
+}

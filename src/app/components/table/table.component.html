@@ -1,5 +1,5 @@
 <div class="table">
-  <table mat-table [dataSource]="business" matSort>
+  <table mat-table [dataSource]="business" matSort #myTable>
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Nome</th>
       <td mat-cell *matCellDef="let item">{{item.name}}</td>

@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { ListComponent } from './components/pages/list/list.component';
 import { DetailsComponent } from './components/pages/details/details.component';
@@ -34,7 +35,8 @@ import { TableComponent } from './components/table/table.component';
     HttpClientModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

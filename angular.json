@@ -97,7 +97,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/inputmask/dist/inputmask.min.js"
+            ]
           }
         }
       }

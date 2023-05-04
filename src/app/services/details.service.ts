@@ -18,4 +18,9 @@ export class DetailsService {
     const url = `${this.apiUrl}/${id}`
     return this.http.get<any>(url)
   }
+
+  updateItem(id: number, data: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`
+    return this.http.put<any>(url, data)
+  }
 }
