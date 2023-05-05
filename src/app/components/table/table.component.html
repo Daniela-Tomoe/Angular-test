@@ -1,21 +1,21 @@
 <div class="table">
-  <table mat-table [dataSource]="business" matSort #myTable>
+  <table mat-table [dataSource]="business" matSort (matSortChange)="sortData($event)">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="name">Nome</th>
       <td mat-cell *matCellDef="let item">{{item.name}}</td>
     </ng-container>
     <ng-container matColumnDef="business">
-      <th mat-header-cell *matHeaderCellDef>Business</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="business">Business</th>
       <td mat-cell *matCellDef="let item">{{item.business}}</td>
     </ng-container>
     <ng-container matColumnDef="valuation">
-      <th mat-header-cell *matHeaderCellDef>Valuation</th>
-      <td mat-cell *matCellDef="let item">{{item.valuation | currency: 'BRL'}}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="valuation">Valuation</th>
+      <td mat-cell *matCellDef="let item">{{formatCurrency(item.valuation)}}</td>
     </ng-container>
     <ng-container matColumnDef="active">
       <th mat-header-cell *matHeaderCellDef>Situação</th>
       <td mat-cell *matCellDef="let item" class="icon-cell">
-        <mat-icon [style.color]="item.active? '#6df473' : '#ff7573'">fiber_manual_record</mat-icon>
+        <mat-icon [style.color]="item.active === 'false' ? '#6df473' : '#ff7573'">fiber_manual_record</mat-icon>
       </td>
     </ng-container>
     <ng-container matColumnDef="details">
