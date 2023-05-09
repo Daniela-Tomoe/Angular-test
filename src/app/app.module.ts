@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { ListComponent } from './components/pages/list/list.component';
 import { DetailsComponent } from './components/pages/details/details.component';
@@ -37,6 +38,7 @@ import { TableComponent } from './components/table/table.component';
     ReactiveFormsModule,
     FormsModule,
     NgxMaskModule.forRoot(),
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

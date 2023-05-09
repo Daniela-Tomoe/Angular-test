@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
-import { environment } from 'src/environments/enviroment';
 import { IBusiness } from 'src/app/IBusiness';
 import { TableService } from 'src/app/services/table.service';
 
@@ -12,23 +11,20 @@ import { TableService } from 'src/app/services/table.service';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
-  business: IBusiness[] = []
-  sortedData: IBusiness[]
+  dataSource = new MatTableDataSource<IBusiness>();
+  displayedColumns: string[] = ['name', 'business', 'valuation', 'active', 'details'];
+  filterValue = '';
 
-  constructor (
+  constructor(
     private tableService: TableService
-  ) {
-    this.sortedData = this.business.slice()
-  }
+  ) { }
 
   ngOnInit() {
     this.tableService.getAllData().subscribe(items => {
-      this.business = items
+      this.dataSource.data = items;
     })
   }
 
-  displayedColumns: string[] = ['name', 'business', 'valuation', 'active', 'details']
-  
   formatCurrency(value: number): string {
     if (isNaN(value)) return '';
 
@@ -36,17 +32,16 @@ export class TableComponent {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
       useGrouping: true
-    })
+    });
   }
 
   sortData(sort: Sort) {
-    const data = this.business.slice();
+    const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
-      this.sortedData = data
-      return
+      this.dataSource.data = data;
+      return;
     }
-
-    this.sortedData = data.sort((a, b) => {
+    const sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch(sort.active) {
         case 'name':
@@ -54,14 +49,26 @@ export class TableComponent {
         case 'business':
           return this.compare(a.business, b.business, isAsc);
         case 'valuation':
-          return this.compare(a.valuation, b.valuation, isAsc)
+          return this.compare(a.valuation, b.valuation, isAsc);
         default:
           return 0;
       }
-    })
+    });
+    this.dataSource.data = sortedData;
   }
 
-  compare(a:string | number, b: string | number, isAsc: boolean) {
+  compare(a: any, b: any, isAsc: boolean) {
+    if (a == null || a === undefined) {
+      return isAsc ? -1 : 1;
+    }
+    if (b == null || b === undefined) {
+      return isAsc ? 1 : -1;
+    }
+
+    if (typeof a === 'string' && typeof b === 'string') {
+      return (a.toLowerCase() < b.toLowerCase() ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }
