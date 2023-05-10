@@ -41,7 +41,7 @@ export class DetailsComponent {
       name: [this.businessDetails.name, Validators.required],
       business: [this.businessDetails.business, Validators.required],
       valuation: [this.businessDetails.valuation, Validators.required],
-      cnpj: [this.businessDetails.cnpj, Validators.required],
+      cnpj: [this.businessDetails.cnpj, [Validators.required, Validators.minLength(14)]],
       active: [this.businessDetails.active, Validators.required]
     })
   }
@@ -49,23 +49,38 @@ export class DetailsComponent {
   createAdressForm(): void {
     this.addressForm = this.formBuilder.group ({
       cep: [this.businessDetails.cep, Validators.required],
-      street: [''],
-      neighborhood: [''],
-      city: [''],
-      state: ['']
+      street: ['', Validators.required],
+      neighborhood: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required]
     })
   }
 
+  checkCnpjLength(): void {
+    const cnpjControl = this.businessForm.controls['cnpj'];
+    if (cnpjControl.value.length < 14) {
+      cnpjControl.setErrors({invalidCnpj: true})
+    } else {
+      cnpjControl.setErrors(null)
+    }
+  }
+
   consultCep(): void {
-    const cep = this.addressForm.controls['cep'].value
+    const cepControl = this.addressForm.controls['cep'];
+    const cep = cepControl.value;
     if (cep) {
       this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`).subscribe((data) => {
-        this.addressForm.patchValue({
-          street: data.logradouro,
-          neighborhood: data.bairro,
-          city: data.localidade,
-          state: data.uf
-        })
+        if (data.erro) {
+          console.log('CEP não encontrado')
+          cepControl.setErrors({invalidCep: true})
+        } else {
+          this.addressForm.patchValue({
+            street: data.logradouro,
+            neighborhood: data.bairro,
+            city: data.localidade,
+            state: data.uf
+          })
+        }
       })
     }
   }
@@ -80,8 +95,12 @@ export class DetailsComponent {
     const data = {...businessData, ...addressData}
 
     this.detailsService.updateItem(this.businessId, data).subscribe(() => {
-      console.log('Dados salvos com sucesso');
-      this.goBack();
+      if (this.addressForm.valid && this.businessForm.valid) {
+        console.log('Dados salvos com sucesso');
+        this.goBack();
+      } else {
+        alert('O formulário contém algum erro. Favor corrigir.')
+      }
     }, error => {
       console.error(error);
       alert('Erro ao salvar os dados');
