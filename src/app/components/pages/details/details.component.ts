@@ -91,8 +91,8 @@ export class DetailsComponent {
 
   saveChanges(): void {
     const businessData = this.businessForm.value;
-    const addressData = this.addressForm.value;
-    const data = {...businessData, ...addressData}
+    const cep = this.addressForm.controls['cep'].value;
+    const data = {...businessData, cep}
 
     this.detailsService.updateItem(this.businessId, data).subscribe(() => {
       if (this.addressForm.valid && this.businessForm.valid) {
